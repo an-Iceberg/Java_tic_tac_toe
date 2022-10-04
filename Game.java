@@ -1,21 +1,26 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Game {
-  // TODO: ask if the following are allowed:
-  // [ ] enums
-  // [ ] regex pattern matching
-  // [ ] printf
+  private static final String X = "X"; // TODO: use these static consts
+  // All loops are allowed
+
+  // TODO: make program work WITHOUT regex
+  // Allowed: foreach, while
+  // Consider using iterators, maybe
   private String Language = new String();
-  private ArrayList<String> PlayingField = new ArrayList<String>();
+  private ArrayList<String> PlayingField = new ArrayList<>();
   private Scanner input = new Scanner(System.in);
-  private Pattern germanPattern = Pattern.compile(".*[dD][eE].*");
-  private Pattern englishPattern = Pattern.compile(".*[eE][nN].*");
-  private Pattern yesPattern = Pattern.compile(".*[yY][eE]?[sS]?.*");
-  private Pattern noPattern = Pattern.compile(".*[nN][oO]?.*");
-  private Pattern quitPattern = Pattern.compile(".*[qQ][uU][iI][tT]|[eE][xX][iI][tT]|[xX]|[qQ].*");
+  /**
+   * Field:
+   * +---+---+---+
+   * | 1 | 2 | 3 |
+   * +---+---+---+
+   * | 4 | 5 | 6 |
+   * +---+---+---+
+   * | 7 | 8 | 9 |
+   * +---+---+---+
+   */
   private String title = """
   _______ _        _______           _______
  |__   __(_)      |__   __|         |__   __|
@@ -49,21 +54,18 @@ public class Game {
 
       // Getting user input
       String rawInput = input.nextLine();
-      Matcher germanMatcher = germanPattern.matcher(rawInput);
-      Matcher englishMatcher = englishPattern.matcher(rawInput);
-      Matcher quitMatcher = quitPattern.matcher(rawInput);
 
-      if (germanMatcher.matches()) { // German has been selected
+      if (rawInput.contains("de")) { // German has been selected
         Language = "de";
         System.out.println("Sie haben Deutsch als Sprache ausgewählt.");
         languageHasBeenSelected = true;
         break;
-      } else if (englishMatcher.matches()) { // English has been selected
+      } else if (rawInput.contains("en")) { // English has been selected
         Language = "en";
         System.out.println("You have chosen English as your language.");
         languageHasBeenSelected = true;
         break;
-      } else if (quitMatcher.matches()) { // User wants to quit the game
+      } else if (rawInput.contains("q") || rawInput.contains("x") || rawInput.contains("quit") || rawInput.contains("exit")) { // User wants to quit the game
         // TODO: quit the program
       }
       // If the user has not provided a satisfactory answer the program just keeps asking for a valid answer
@@ -85,21 +87,18 @@ public class Game {
 
       // Getting user input
       String rawInput = input.nextLine();
-      Matcher yesMatcher = yesPattern.matcher(rawInput);
-      Matcher noMatcher = noPattern.matcher(rawInput);
-      Matcher quitMatcher = quitPattern.matcher(rawInput);
 
-      if (yesMatcher.matches()) { // User wants to change the language
+      if (rawInput.contains("y") || rawInput.contains("yes")) { // User wants to change the language
         // Changing to the other language
         if (Language.equals("en")) {
           Language = "de";
         } else if (Language.equals("de")) {
           Language = "en";
         }
-      } else if (noMatcher.matches()) { // User wants to keep using the same language
+      } else if (rawInput.contains("n") || rawInput.contains("no")) { // User wants to keep using the same language
         languageHasBeenChanged = true;
         break;
-      } else if (quitMatcher.matches()) { // User wants to quit the game
+      } else if (rawInput.contains("q") || rawInput.contains("x") || rawInput.contains("quit") || rawInput.contains("exit")) { // User wants to quit the game
         // TODO: quit the program
       }
 
