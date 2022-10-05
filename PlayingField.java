@@ -19,28 +19,28 @@ public class PlayingField {
    *  └───┴───┴───┘ ┗━━━┻━━━┻━━━┛ ╚═══╩═══╩═══╝
    */
 
-  private ArrayList<String> filed = new ArrayList<>();
+  private ArrayList<String> field = new ArrayList<>();
 
   public PlayingField() {
     for (int i = 0; i <= 9; i++) {
-      filed.add(EMPTY);
+      this.field.add(EMPTY);
     }
   }
 
   public String getFieldContent(int coordinate) {
-    return filed.get(coordinate);
+    return this.field.get(coordinate);
   }
 
   public void setFieldToX(int coordinate) {
-    filed.set(coordinate, X);
+    this.field.set(coordinate, X);
   }
 
   public void setFieldToO(int coordinate) {
-    filed.set(coordinate, O);
+    this.field.set(coordinate, O);
   }
 
   public void setFieldToEmpty(int coordinate) {
-    filed.set(coordinate, EMPTY);
+    this.field.set(coordinate, EMPTY);
   }
 
   public String getFieldState() {
@@ -49,11 +49,11 @@ public class PlayingField {
 
   public void print() {
     System.out.println("╔═══╦═══╦═══╗");
-    System.out.printf("║ %s ║ %s ║ %s ║\n", filed.get(0), filed.get(1), filed.get(2));
+    System.out.printf("║ %s ║ %s ║ %s ║\n", this.field.get(0), this.field.get(1), this.field.get(2));
     System.out.println("╠═══╬═══╬═══╣");
-    System.out.printf("║ %s ║ %s ║ %s ║\n", filed.get(3), filed.get(4), filed.get(5));
+    System.out.printf("║ %s ║ %s ║ %s ║\n", this.field.get(3), this.field.get(4), this.field.get(5));
     System.out.println("╠═══╬═══╬═══╣");
-    System.out.printf("║ %s ║ %s ║ %s ║\n", filed.get(6), filed.get(7), filed.get(8));
+    System.out.printf("║ %s ║ %s ║ %s ║\n", this.field.get(6), this.field.get(7), this.field.get(8));
     System.out.println("╚═══╩═══╩═══╝");
   }
 }
